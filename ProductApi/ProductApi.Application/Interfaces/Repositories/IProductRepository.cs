@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.Infrastructure.Repositories
+namespace ProductApi.Application.Interfaces.Repositories
 {
     public interface IProductRepository : IGenericRepository<Product>
     {

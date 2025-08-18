@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.Application.Queries
+namespace ProductApi.Application.Queries.Product
 {
-    public class GetProductByIdQuery
+    public class GetAllProductsQuery
     {
-        public int ProductId { get; set; } // Product Id
     }
 }

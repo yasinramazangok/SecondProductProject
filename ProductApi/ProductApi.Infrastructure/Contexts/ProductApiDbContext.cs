@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductApi.Application.Interfaces;
 using ProductApi.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProductApi.Infrastructure.Contexts
 {
-    public class ProductApiDbContext : DbContext
+    public class ProductApiDbContext : DbContext, IProductApiDbContext
     {
         public ProductApiDbContext(DbContextOptions<ProductApiDbContext> options)
             : base(options) { }

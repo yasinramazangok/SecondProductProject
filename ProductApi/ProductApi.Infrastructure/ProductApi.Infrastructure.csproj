@@ -7,15 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="3.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.18" />
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProductApi.Application\ProductApi.Application.csproj" />
     <ProjectReference Include="..\ProductApi.Core\ProductApi.Core.csproj" />
   </ItemGroup>
 
