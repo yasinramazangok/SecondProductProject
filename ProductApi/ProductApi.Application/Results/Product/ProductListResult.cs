@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.Application.DTOs.Product
+namespace ProductApi.Application.Results.Product
 {
-    public class ProductDto
+    public class ProductListResult
     {
         public int ProductId { get; set; }
         public string Name { get; set; }
@@ -15,8 +15,6 @@ namespace ProductApi.Application.DTOs.Product
         public string Category { get; set; }
         public string ImageUrl { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
         public int Views { get; set; }
         public double Rating { get; set; }
     }

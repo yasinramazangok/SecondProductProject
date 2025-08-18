@@ -6,12 +6,6 @@ using ProductApi.Core.Entities;
 using ProductApi.Core.Enums;
 using ProductApi.Infrastructure.Contexts;
 using ProductApi.Infrastructure.Identity;
-using ProductApi.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductApi.Infrastructure.Services
 {
