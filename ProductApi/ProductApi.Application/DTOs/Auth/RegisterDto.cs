@@ -8,12 +8,13 @@ namespace ProductApi.Application.DTOs.Auth
 {
     public class RegisterDto
     {
-        public string Username { get; set; }    // Username
-        public string Email { get; set; }       // Email
-        public string Password { get; set; }    // Password
-        public string FirstName { get; set; }   // First name
-        public string LastName { get; set; }    // Last name
-        public string PhoneNumber { get; set; } // Phone number
-        public string ProfileImageUrl { get; set; } // Profile image URL
+        public string Username { get; set; } = null!;     // Username
+        public string Email { get; set; } = null!;        // Email
+        public string Password { get; set; } = null!; // Password
+        public string FirstName { get; set; } = null!;    // First name
+        public string LastName { get; set; } = null!;     // Last name
+        public string PhoneNumber { get; set; } = null!;  // Phone number
+        public string? ProfileImageUrl { get; set; }      // Profile image URL (optional)
+        public string? Address { get; set; }              // Address (optional)
     }
 }

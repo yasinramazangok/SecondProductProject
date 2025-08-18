@@ -1,11 +1,6 @@
 ﻿using ProductApi.Core.Entities;
-using ProductApi.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
+using ProductApi.Infrastructure.Identity;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace ProductApi.Tests.JWT
@@ -16,7 +11,7 @@ namespace ProductApi.Tests.JWT
         public void GenerateToken_ShouldReturn_ValidJwt()
         {
             // Arrange
-            var user = new User { UserId = 12, Username = "testuser", Email="deneme@deneme.com" };
+            var user = new User { UserId = 12, Username = "testuser", Email = "deneme@deneme.com" };
             var tokenService = new JwtTokenService("SecondProductProject12345!@#$!@#$!@#$", "ProductApi", "ProductApiUsers", 60);
 
             // Act

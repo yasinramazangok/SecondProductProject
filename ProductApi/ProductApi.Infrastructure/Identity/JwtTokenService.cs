@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.Infrastructure.Services
+namespace ProductApi.Infrastructure.Identity
 {
     public class JwtTokenService
     {

@@ -8,7 +8,7 @@ namespace ProductApi.Application.DTOs.Auth
 {
     public class LoginDto
     {
-        public string Email { get; set; }    // Email
-        public string Password { get; set; } // Password
+        public string Email { get; set; } = null!;         // Email
+        public string Password { get; set; } = null!;  // Password
     }
 }
