@@ -1,5 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using ProductApi.Application.Interfaces;
+using ProductApi.Infrastructure.Contexts;
+using ProductApi.Infrastructure.Redis;
+using StackExchange.Redis;
+using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +29,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+var redisConnectionString = builder.Configuration.GetConnectionString("Redis");
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+    ConnectionMultiplexer.Connect(redisConnectionString)
+);
+
+// PostgreSQL
+builder.Services.AddDbContext<ProductApiDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"))
+);
 // Add services to the container.
+
+builder.Services.AddScoped<ICacheService, RedisCacheService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
