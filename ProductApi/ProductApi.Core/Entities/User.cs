@@ -13,7 +13,7 @@ namespace ProductApi.Core.Entities
         public int UserId { get; set; }                        // Primary key
         public string Username { get; set; }               // Username
         public string Email { get; set; }                  // Email address
-        public string PasswordHash { get; set; }           // Password hash
+        public string Password { get; set; }           // Password
         public Role Role { get; set; }                     // Admin / User role
         public string FirstName { get; set; }              // First name
         public string LastName { get; set; }               // Last name
