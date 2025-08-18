@@ -10,7 +10,7 @@ namespace ProductApi.Core.Entities
 {
     public class User
     {
-        public int Id { get; set; }                        // Primary key
+        public int UserId { get; set; }                        // Primary key
         public string Username { get; set; }               // Username
         public string Email { get; set; }                  // Email address
         public string PasswordHash { get; set; }           // Password hash

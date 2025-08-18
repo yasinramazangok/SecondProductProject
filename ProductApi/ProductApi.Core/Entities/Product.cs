@@ -8,7 +8,7 @@ namespace ProductApi.Core.Entities
 {
     public class Product
     {
-        public int Id { get; set; }                         // Primary key
+        public int ProductId { get; set; }                         // Primary key
         public string Name { get; set; }                    // Product name
         public string Description { get; set; }             // Description
         public decimal Price { get; set; }                  // Price
