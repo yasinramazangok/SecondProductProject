@@ -9,5 +9,10 @@ namespace ProductApi.Application.Queries.Product
     public class GetProductByIdQuery
     {
         public int ProductId { get; set; }
+
+        public GetProductByIdQuery(int productId)
+        {
+            ProductId = productId;
+        }
     }
 }

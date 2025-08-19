@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductApi.Application.Interfaces.Repositories;
 using ProductApi.Core.Entities;
 using ProductApi.Infrastructure.Contexts;
 using System;
@@ -21,8 +22,9 @@ namespace ProductApi.Infrastructure.Repositories
         // Example of a product-specific method
         public async Task<IEnumerable<Product>> GetActiveProductsAsync()
         {
-            return await _context.Products
+            return await _context.Set<Product>()
                                  .Where(p => p.IsActive)
+                                 .OrderBy(p => p.Name)
                                  .ToListAsync();
         }
     }

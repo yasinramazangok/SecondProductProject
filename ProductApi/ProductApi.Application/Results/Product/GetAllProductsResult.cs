@@ -8,6 +8,6 @@ namespace ProductApi.Application.Results.Product
 {
     public class GetAllProductsResult
     {
-        public List<ProductListResult> Products { get; set; }
+        public List<ProductListResult> ProductList { get; set; }
     }
 }

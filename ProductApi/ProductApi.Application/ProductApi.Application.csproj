@@ -22,9 +22,4 @@
     <ProjectReference Include="..\ProductApi.Core\ProductApi.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\Product\CommandHandlers\" />
-    <Folder Include="Handlers\Product\QueryHandlers\" />
-  </ItemGroup>
-
 </Project>
