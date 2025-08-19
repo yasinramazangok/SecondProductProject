@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.Application.Commons.Interfaces
+namespace ProductApi.Application.Services.AuthServices
 {
     public interface IAuthService
     {

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using ProductApi.Application.Commons.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductApi.Application.Features.Auths.DTOs;
+using ProductApi.Application.Services.AuthServices;
 
 namespace ProductApi.API.Controllers
 {
