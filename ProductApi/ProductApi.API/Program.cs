@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using ProductApi.Application.Interfaces;
+using ProductApi.Application.Commons.Interfaces;
 using ProductApi.Infrastructure.Contexts;
 using ProductApi.Infrastructure.Identity;
 using ProductApi.Infrastructure.Redis;

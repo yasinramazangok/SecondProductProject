@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductApi.Application.Interfaces;
+using ProductApi.Application.Commons.Interfaces;
 using ProductApi.Core.Entities;
 using System;
 using System.Collections.Generic;

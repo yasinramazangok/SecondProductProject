@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductApi.Application;
-using ProductApi.Application.DTOs.Auth;
-using ProductApi.Application.Interfaces;
+using ProductApi.Application.Commons.Interfaces;
+using ProductApi.Application.Commons.Models;
+using ProductApi.Application.Features.Auths.DTOs;
 using ProductApi.Core.Entities;
 using ProductApi.Core.Enums;
 using ProductApi.Infrastructure.Contexts;

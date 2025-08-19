@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using ProductApi.Application.Interfaces;
+using ProductApi.Application.Commons.Interfaces;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
