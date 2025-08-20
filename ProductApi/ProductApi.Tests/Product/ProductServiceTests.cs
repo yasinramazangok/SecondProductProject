@@ -1,10 +1,5 @@
 ﻿using Moq;
-using ProductApi.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ProductApi.Application.Commons.Repositories;
 using Xunit;
 
 namespace ProductApi.Tests.Product
