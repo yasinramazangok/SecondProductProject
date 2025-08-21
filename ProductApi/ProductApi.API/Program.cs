@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using ProductApi.API.Middlewares;
 using ProductApi.Application.Commons.Repositories;
 using ProductApi.Application.Features.Products.Commands.CreateProduct;
 using ProductApi.Application.Features.Products.Commands.DeleteProduct;
@@ -117,6 +118,8 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
