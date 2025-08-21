@@ -1,11 +1,20 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using ProductApi.Application.Commons.Repositories;
+using ProductApi.Application.Features.Products.Commands.CreateProduct;
+using ProductApi.Application.Features.Products.Commands.DeleteProduct;
+using ProductApi.Application.Features.Products.Commands.UpdateProduct;
+using ProductApi.Application.Features.Products.Queries.GetActiveProducts;
+using ProductApi.Application.Features.Products.Queries.GetAllProducts;
+using ProductApi.Application.Features.Products.Queries.GetProductById;
 using ProductApi.Application.Services.AuthServices;
+using ProductApi.Application.Services.ProductServices;
 using ProductApi.Application.Services.RedisCacheServices;
 using ProductApi.Infrastructure.Contexts;
 using ProductApi.Infrastructure.Identity;
 using ProductApi.Infrastructure.Redis;
+using ProductApi.Infrastructure.Repositories;
 using ProductApi.Infrastructure.Services;
 using StackExchange.Redis;
 using System;
@@ -58,8 +67,25 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 
 
 // Add services to the container.
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 builder.Services.AddScoped<ICacheService, RedisCacheService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+// CQRS Handlers - Command Handlers
+builder.Services.AddScoped<ICreateProductCommandHandler, CreateProductCommandHandler>();
+builder.Services.AddScoped<IUpdateProductCommandHandler, UpdateProductCommandHandler>();
+builder.Services.AddScoped<IDeleteProductCommandHandler, DeleteProductCommandHandler>();
+
+// CQRS Handlers - Query Handlers  
+builder.Services.AddScoped<IGetAllProductsQueryHandler, GetAllProductsQueryHandler>();
+builder.Services.AddScoped<IGetProductByIdQueryHandler, GetProductByIdQueryHandler>();
+builder.Services.AddScoped<IGetActiveProductsQueryHandler, GetActiveProductsQueryHandler>();
+
+
+
+
 
 // CORS Policy 
 builder.Services.AddCors(options =>

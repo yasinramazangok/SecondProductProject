@@ -5,6 +5,8 @@ using ProductApi.Application.Features.Products.DTOs;
 using ProductApi.Application.Features.Products.Queries.GetActiveProducts;
 using ProductApi.Application.Features.Products.Queries.GetAllProducts;
 using ProductApi.Application.Features.Products.Queries.GetProductById;
+using ProductApi.Application.Services.RedisCacheServices;
+using System.Text.Json;
 
 namespace ProductApi.Application.Services.ProductServices
 {
@@ -20,13 +22,19 @@ namespace ProductApi.Application.Services.ProductServices
         private readonly IGetProductByIdQueryHandler _getProductByIdHandler;
         private readonly IGetActiveProductsQueryHandler _getActiveProductsHandler;
 
+        // Cache Service
+        private readonly ICacheService _cacheService;
+        private const string ALL_PRODUCTS_CACHE_KEY = "all_products";
+        private readonly TimeSpan _cacheExpiration = TimeSpan.FromMinutes(1);
+
         public ProductService(
             ICreateProductCommandHandler createProductHandler,
             IUpdateProductCommandHandler updateProductHandler,
             IDeleteProductCommandHandler deleteProductHandler,
             IGetAllProductsQueryHandler getAllProductsHandler,
             IGetProductByIdQueryHandler getProductByIdHandler,
-            IGetActiveProductsQueryHandler getActiveProductsHandler)
+            IGetActiveProductsQueryHandler getActiveProductsHandler,
+            ICacheService cacheService)
         {
             _createProductHandler = createProductHandler;
             _updateProductHandler = updateProductHandler;
@@ -34,6 +42,7 @@ namespace ProductApi.Application.Services.ProductServices
             _getAllProductsHandler = getAllProductsHandler;
             _getProductByIdHandler = getProductByIdHandler;
             _getActiveProductsHandler = getActiveProductsHandler;
+            _cacheService = cacheService;
         }
 
         public async Task<ProductDto> CreateProductAsync(CreateProductDto createProductDto)
@@ -43,6 +52,8 @@ namespace ProductApi.Application.Services.ProductServices
 
             // Handler
             var result = await _createProductHandler.HandleAsync(command);
+
+            await _cacheService.RemoveAsync(ALL_PRODUCTS_CACHE_KEY);
 
             return result;
         }
@@ -54,6 +65,11 @@ namespace ProductApi.Application.Services.ProductServices
 
             // Handler
             var result = await _deleteProductHandler.HandleAsync(command);
+
+            if (result)
+            {
+                await _cacheService.RemoveAsync(ALL_PRODUCTS_CACHE_KEY);
+            }
 
             return result;
         }
@@ -68,8 +84,17 @@ namespace ProductApi.Application.Services.ProductServices
 
         public async Task<List<ProductDto>> GetAllProductsAsync()
         {
-            // Handler
+            var cachedData = await _cacheService.GetAsync(ALL_PRODUCTS_CACHE_KEY);
+
+            if (!string.IsNullOrEmpty(cachedData))
+            {
+                return JsonSerializer.Deserialize<List<ProductDto>>(cachedData) ?? new List<ProductDto>();
+            }
+
             var result = await _getAllProductsHandler.HandleAsync();
+
+            var serializedData = JsonSerializer.Serialize(result);
+            await _cacheService.SetAsync(ALL_PRODUCTS_CACHE_KEY, serializedData, _cacheExpiration);
 
             return result;
         }
@@ -92,6 +117,8 @@ namespace ProductApi.Application.Services.ProductServices
 
             // Handler
             var result = await _updateProductHandler.HandleAsync(command);
+
+            await _cacheService.RemoveAsync(ALL_PRODUCTS_CACHE_KEY);
 
             return result;
         }
